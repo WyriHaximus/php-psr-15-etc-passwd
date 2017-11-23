@@ -1,6 +1,6 @@
 {
   "name": "wyrihaximus/psr-15-etc-passwd",
-  "description": "PSR-15 middleware that pretends to expose /etc/passwd",
+  "description": "PSR-15 middleware that pretends to expose /etc/passwd and /etc/shadow",
   "license": "MIT",
   "authors": [
     {
@@ -10,7 +10,7 @@
   ],
   "require": {
     "php": "^7.1",
-    "http-interop/http-middleware": "^0.5.0",
+    "http-interop/http-server-middleware": "^1.0",
     "zendframework/zend-diactoros": "^1.6"
   },
   "require-dev": {
