@@ -12,7 +12,7 @@ use Zend\Diactoros\Uri;
 
 final class EtcPasswdMiddlewareTest extends TestCase
 {
-    public function provideUsers()
+    public function provideUsers(): iterable
     {
         yield [
             [
@@ -31,7 +31,7 @@ final class EtcPasswdMiddlewareTest extends TestCase
     /**
      * @dataProvider provideUsers
      */
-    public function testPasswd(array $users)
+    public function testPasswd(array $users): void
     {
         $request = (new ServerRequest())->withMethod('GET')->withUri(new Uri('/etc/passwd'));
         $requestHandler = $this->prophesize(RequestHandlerInterface::class)->reveal();
@@ -50,7 +50,7 @@ final class EtcPasswdMiddlewareTest extends TestCase
     /**
      * @dataProvider provideUsers
      */
-    public function testShadow(array $users)
+    public function testShadow(array $users): void
     {
         $request = (new ServerRequest())->withMethod('GET')->withUri(new Uri('/etc/shadow'));
         $requestHandler = $this->prophesize(RequestHandlerInterface::class)->reveal();
@@ -66,7 +66,7 @@ final class EtcPasswdMiddlewareTest extends TestCase
         }
     }
 
-    public function provideNonMatchingRequests()
+    public function provideNonMatchingRequests(): iterable
     {
         yield [
             (new ServerRequest())->withMethod('POST')->withUri(new Uri('/etc/passwd')),
@@ -112,7 +112,7 @@ final class EtcPasswdMiddlewareTest extends TestCase
     /**
      * @dataProvider provideNonMatchingRequests
      */
-    public function testNonMatchingRequests(RequestInterface $request)
+    public function testNonMatchingRequests(RequestInterface $request): void
     {
         $response = new Response();
         $etcPasswd = new EtcPasswdMiddleware([]);
