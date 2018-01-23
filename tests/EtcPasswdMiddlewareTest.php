@@ -2,9 +2,9 @@
 
 namespace WyriHaximus\Tests\Psr15\EtcPasswd;
 
-use Interop\Http\Server\RequestHandlerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use WyriHaximus\Psr15\EtcPasswd\EtcPasswdMiddleware;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
