@@ -11,7 +11,7 @@
   "require": {
     "php": "^7.1",
     "psr/http-server-middleware": "^1.0",
-    "zendframework/zend-diactoros": "^1.6"
+    "zendframework/zend-diactoros": "^2.0"
   },
   "require-dev": {
     "api-clients/test-utilities": "^4.1"
