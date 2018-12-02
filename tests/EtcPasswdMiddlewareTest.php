@@ -10,6 +10,9 @@ use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 use Zend\Diactoros\Uri;
 
+/**
+ * @internal
+ */
 final class EtcPasswdMiddlewareTest extends TestCase
 {
     public function provideUsers(): iterable
@@ -40,10 +43,10 @@ final class EtcPasswdMiddlewareTest extends TestCase
         self::assertTrue($response->hasHeader('Content-Type'));
         self::assertSame('text/plain', $response->getHeaderLine('Content-Type'));
         $body = $response->getBody()->getContents();
-        foreach (explode(PHP_EOL, $body) as $i => $line) {
-            list($user, $password, $extras) = explode(':', $line, 3);
+        foreach (\explode(PHP_EOL, $body) as $i => $line) {
+            list($user, $password, $extras) = \explode(':', $line, 3);
             self::assertSame('x', $password);
-            self::assertSame(crc32($user) . ':0:99999:7:::', $extras);
+            self::assertSame(\crc32($user) . ':0:99999:7:::', $extras);
         }
     }
 
@@ -59,10 +62,10 @@ final class EtcPasswdMiddlewareTest extends TestCase
         self::assertTrue($response->hasHeader('Content-Type'));
         self::assertSame('text/plain', $response->getHeaderLine('Content-Type'));
         $body = $response->getBody()->getContents();
-        foreach (explode(PHP_EOL, $body) as $i => $line) {
-            list($user, $password, $extras) = explode(':', $line, 3);
-            self::assertSame('$1$$' . base64_encode(md5($users[$user])), $password);
-            self::assertSame(crc32($user) . ':0:99999:7:::', $extras);
+        foreach (\explode(PHP_EOL, $body) as $i => $line) {
+            list($user, $password, $extras) = \explode(':', $line, 3);
+            self::assertSame('$1$$' . \base64_encode(\md5($users[$user])), $password);
+            self::assertSame(\crc32($user) . ':0:99999:7:::', $extras);
         }
     }
 

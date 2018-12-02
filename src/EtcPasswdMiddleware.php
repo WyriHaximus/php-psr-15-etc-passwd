@@ -23,13 +23,13 @@ final class EtcPasswdMiddleware implements MiddlewareInterface
 
     public function __construct(iterable $users)
     {
-        $this->passwdContents = implode(
+        $this->passwdContents = \implode(
             PHP_EOL,
-            iterator_to_array($this->createPasswdContents($users))
+            \iterator_to_array($this->createPasswdContents($users))
         );
-        $this->shadowContents = implode(
+        $this->shadowContents = \implode(
             PHP_EOL,
-            iterator_to_array($this->createShadowContents($users))
+            \iterator_to_array($this->createShadowContents($users))
         );
     }
 
@@ -49,14 +49,14 @@ final class EtcPasswdMiddleware implements MiddlewareInterface
     private function createPasswdContents(iterable $users): iterable
     {
         foreach ($users as $user => $password) {
-            yield $user . ':x:' . crc32($user) . ':0:99999:7:::';
+            yield $user . ':x:' . \crc32($user) . ':0:99999:7:::';
         }
     }
 
     private function createShadowContents(iterable $users): iterable
     {
         foreach ($users as $user => $password) {
-            yield $user . ':$1$$' . base64_encode(md5($password)) . ':' . crc32($user) . ':0:99999:7:::';
+            yield $user . ':$1$$' . \base64_encode(\md5($password)) . ':' . \crc32($user) . ':0:99999:7:::';
         }
     }
 
