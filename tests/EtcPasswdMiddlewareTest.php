@@ -43,7 +43,7 @@ final class EtcPasswdMiddlewareTest extends TestCase
         self::assertTrue($response->hasHeader('Content-Type'));
         self::assertSame('text/plain', $response->getHeaderLine('Content-Type'));
         $body = $response->getBody()->getContents();
-        foreach (\explode(PHP_EOL, $body) as $i => $line) {
+        foreach (\explode(\PHP_EOL, $body) as $i => $line) {
             list($user, $password, $extras) = \explode(':', $line, 3);
             self::assertSame('x', $password);
             self::assertSame(\crc32($user) . ':0:99999:7:::', $extras);
@@ -62,7 +62,7 @@ final class EtcPasswdMiddlewareTest extends TestCase
         self::assertTrue($response->hasHeader('Content-Type'));
         self::assertSame('text/plain', $response->getHeaderLine('Content-Type'));
         $body = $response->getBody()->getContents();
-        foreach (\explode(PHP_EOL, $body) as $i => $line) {
+        foreach (\explode(\PHP_EOL, $body) as $i => $line) {
             list($user, $password, $extras) = \explode(':', $line, 3);
             self::assertSame('$1$$' . \base64_encode(\md5($users[$user])), $password);
             self::assertSame(\crc32($user) . ':0:99999:7:::', $extras);
