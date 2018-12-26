@@ -24,11 +24,11 @@ final class EtcPasswdMiddleware implements MiddlewareInterface
     public function __construct(iterable $users)
     {
         $this->passwdContents = \implode(
-            PHP_EOL,
+            \PHP_EOL,
             \iterator_to_array($this->createPasswdContents($users))
         );
         $this->shadowContents = \implode(
-            PHP_EOL,
+            \PHP_EOL,
             \iterator_to_array($this->createShadowContents($users))
         );
     }
