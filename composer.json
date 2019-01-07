@@ -11,7 +11,7 @@
   "require": {
     "php": "^7.2",
     "psr/http-server-middleware": "^1.0",
-    "zendframework/zend-diactoros": "^2.0"
+    "zendframework/zend-diactoros": "^2.1"
   },
   "require-dev": {
     "api-clients/cs-fixer-config": "^1.1",
